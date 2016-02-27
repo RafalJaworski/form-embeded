@@ -7,4 +7,7 @@
     <route id="user_homepage" path="/">
         <default key="_controller">UserBundle:Default:index</default>
     </route>
+    <route id="user_new" path="/new">
+        <default key="_controller">UserBundle:User:new</default>
+    </route>
 </routes>
