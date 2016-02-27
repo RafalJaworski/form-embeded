@@ -36,7 +36,7 @@ class User
     private $lastName;
 
     /**
-     * @ORM\ManyToMany(targetEntity="ProductBundle\Entity\Product", inversedBy="users")
+     * @ORM\ManyToMany(targetEntity="ProductBundle\Entity\Product", inversedBy="users", cascade="persist")
      * @ORM\JoinTable(name="users_products")
      */
     private $products;

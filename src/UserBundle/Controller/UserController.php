@@ -2,6 +2,7 @@
 
 namespace UserBundle\Controller;
 
+use ProductBundle\Entity\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use UserBundle\Entity\User;
@@ -23,7 +24,15 @@ class UserController extends Controller
 
     public function newAction(Request $request)
     {
-        $form = $this->createForm(UserType::class,new User);
+//        to see product in new user form you need to add at least one product here to text - if its not adding dinamicly
+        $user =new User;
+        $product = new Product();
+        $product->setName('productttt');
+        $product->setPrice(21123123);
+
+        $user->addProduct($product);
+
+        $form = $this->createForm(UserType::class,$user);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
