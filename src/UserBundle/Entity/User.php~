@@ -120,34 +120,4 @@ class User
     {
         return $this->products;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->products = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add products
-     *
-     * @param \ProductBundle\Entity\Product $products
-     * @return User
-     */
-    public function addProduct(\ProductBundle\Entity\Product $products)
-    {
-        $this->products[] = $products;
-
-        return $this;
-    }
-
-    /**
-     * Remove products
-     *
-     * @param \ProductBundle\Entity\Product $products
-     */
-    public function removeProduct(\ProductBundle\Entity\Product $products)
-    {
-        $this->products->removeElement($products);
-    }
 }

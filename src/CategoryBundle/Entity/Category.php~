@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="category")
  * @ORM\Entity(repositoryClass="CategoryBundle\Repository\categoryRepository")
  */
-class category
+class Category
 {
     /**
      * @var int
@@ -29,9 +29,7 @@ class category
     private $name;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="products", type="string", length=255)
+     * @ORM\OneToMany(targetEntity="ProductBundle\Entity\Product", mappedBy="category")
      */
     private $products;
 
@@ -50,7 +48,7 @@ class category
      * Set name
      *
      * @param string $name
-     * @return category
+     * @return Category
      */
     public function setName($name)
     {
@@ -73,7 +71,7 @@ class category
      * Set products
      *
      * @param string $products
-     * @return category
+     * @return Category
      */
     public function setProducts($products)
     {

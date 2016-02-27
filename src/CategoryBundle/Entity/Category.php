@@ -1,16 +1,16 @@
 <?php
 
-namespace UserBundle\Entity;
+namespace CategoryBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * User
+ * category
  *
- * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="UserBundle\Repository\UserRepository")
+ * @ORM\Table(name="category")
+ * @ORM\Entity(repositoryClass="CategoryBundle\Repository\categoryRepository")
  */
-class User
+class Category
 {
     /**
      * @var int
@@ -24,20 +24,12 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="first_name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
-    private $firstName;
+    private $name;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="last_name", type="string", length=255)
-     */
-    private $lastName;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="ProductBundle\Entity\Product", inversedBy="users")
-     * @ORM\JoinTable(name="users_products")
+     * @ORM\OneToMany(targetEntity="ProductBundle\Entity\Product", mappedBy="category")
      */
     private $products;
 
@@ -53,56 +45,33 @@ class User
     }
 
     /**
-     * Set firstName
+     * Set name
      *
-     * @param string $firstName
-     * @return User
+     * @param string $name
+     * @return Category
      */
-    public function setFirstName($firstName)
+    public function setName($name)
     {
-        $this->firstName = $firstName;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get firstName
+     * Get name
      *
      * @return string 
      */
-    public function getFirstName()
+    public function getName()
     {
-        return $this->firstName;
-    }
-
-    /**
-     * Set lastName
-     *
-     * @param string $lastName
-     * @return User
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    /**
-     * Get lastName
-     *
-     * @return string 
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
+        return $this->name;
     }
 
     /**
      * Set products
      *
      * @param string $products
-     * @return User
+     * @return Category
      */
     public function setProducts($products)
     {
@@ -132,7 +101,7 @@ class User
      * Add products
      *
      * @param \ProductBundle\Entity\Product $products
-     * @return User
+     * @return Category
      */
     public function addProduct(\ProductBundle\Entity\Product $products)
     {
