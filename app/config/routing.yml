@@ -1,3 +1,11 @@
+product:
+    resource: "@ProductBundle/Resources/config/routing.xml"
+    prefix:   /product
+
+category:
+    resource: "@CategoryBundle/Resources/config/routing.xml"
+    prefix:   /category
+
 app:
     resource: "@AppBundle/Resources/config/routing.xml"
     prefix:   /
