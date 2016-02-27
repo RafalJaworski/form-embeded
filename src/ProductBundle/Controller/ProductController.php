@@ -2,7 +2,10 @@
 
 namespace ProductBundle\Controller;
 
+use ProductBundle\Entity\Product;
+use ProductBundle\Form\ProductType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class ProductController extends Controller
 {
@@ -13,11 +16,19 @@ class ProductController extends Controller
         ));
     }
 
-    public function newAction()
+    public function newAction(Request $request)
     {
-        return $this->render('ProductBundle:Product:new.html.twig', array(
-            // ...
-        ));
+        $form = $this->createForm(ProductType::class,new Product());
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($form->getData());
+            $em->flush();
+
+            return $this->redirectToRoute('product_homepage');
+        }
+
+        return $this->render('ProductBundle:Product:new.html.twig', ['form'=>$form->createView()]);
     }
 
 }
