@@ -25,7 +25,11 @@ class UserController extends Controller
         $form = $this->createForm(UserType::class,new User);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($form->getData());
+            $em->flush();
 
+            return $this->redirectToRoute('user_homepage');
         }
 
         return $this->render('@User/User/new.html.twig',['form'=>$form->createView()]);
