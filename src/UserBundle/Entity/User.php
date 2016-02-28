@@ -131,12 +131,13 @@ class User
     /**
      * Add products
      *
-     * @param \ProductBundle\Entity\Product $products
+     * @param \ProductBundle\Entity\Product $product
      * @return User
      */
-    public function addProduct(\ProductBundle\Entity\Product $products)
+    public function addProduct(\ProductBundle\Entity\Product $product)
     {
-        $this->products[] = $products;
+        $product->addUser($this);
+        $this->products->add($product);
 
         return $this;
     }

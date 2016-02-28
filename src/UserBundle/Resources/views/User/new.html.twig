@@ -1,14 +1,17 @@
-{% extends 'base.html.twig' %}
+{% extends '@App/layout.html.twig' %}
 
 {% block body %}
     {{ form_start(form) }}
-    {{ form_widget(form.firstName) }}
-    {{ form_widget(form.lastName) }}
 
-    <ul class="products" data-prototype="{{ form_widget(form.products.vars.prototype)|e }}" style="list-style-type: none">
+    {{ form_row(form.firstName) }}
+
+    {{ form_row(form.lastName) }}
+
+    <ul class="products" data-something-prototype="{{ form_widget(form.products.vars.prototype)|e }}" style="list-style-type: none">
         {% for product in form.products %}
             <li>{{ form_row(product.name) }}</li>
             <li>{{ form_row(product.price) }}</li>
+            <li>{{ form_row(product.category) }}</li>
         {% endfor %}
     </ul>
 

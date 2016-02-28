@@ -136,12 +136,15 @@ class Product
     /**
      * Add users
      *
-     * @param \UserBundle\Entity\User $users
+     * @param \UserBundle\Entity\User $user
      * @return Product
      */
-    public function addUser(\UserBundle\Entity\User $users)
+    public function addUser(\UserBundle\Entity\User $user)
     {
-        $this->users[] = $users;
+        if(!$this->users->contains($this)){
+            $this->users->add($user);
+        }
+
 
         return $this;
     }

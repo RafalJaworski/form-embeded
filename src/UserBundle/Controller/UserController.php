@@ -24,15 +24,7 @@ class UserController extends Controller
 
     public function newAction(Request $request)
     {
-//        to see product in new user form you need to add at least one product here to text - if its not adding dinamicly
-        $user =new User;
-        $product = new Product();
-        $product->setName('productttt');
-        $product->setPrice(21123123);
-
-        $user->addProduct($product);
-
-        $form = $this->createForm(UserType::class,$user);
+        $form = $this->createForm(UserType::class,new User());
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();

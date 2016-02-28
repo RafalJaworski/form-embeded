@@ -18,8 +18,11 @@ class UserType extends AbstractType
                 ->add('lastName',TextType::class)
                 ->add('products',CollectionType::class,
                     [
+                        'label'=>false,
                         'entry_type'=>ProductType::class,
                         'allow_add'=>true, //adding prototype variable to render any new product
+                        'by_reference'=>false, //adding this to use addProduct instead of setProduct and addUser in Product Entity
+
                     ]);
     }
 
