@@ -16,7 +16,11 @@ class UserType extends AbstractType
     {
         $builder->add('firstName',TextType::class)
                 ->add('lastName',TextType::class)
-                ->add('products',CollectionType::class,['entry_type'=>ProductType::class]);
+                ->add('products',CollectionType::class,
+                    [
+                        'entry_type'=>ProductType::class,
+                        'allow_add'=>true, //adding prototype variable to render any new product
+                    ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
