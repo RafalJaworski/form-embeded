@@ -2,14 +2,15 @@
 
 {% block body %}
     {{ form_start(form) }}
-    {{ form_label(form.firstName) }}
     {{ form_widget(form.firstName) }}
-
-    {{ form_label(form.lastName) }}
     {{ form_widget(form.lastName) }}
 
-    {# prototype is in div --look at firebug #}
-    {{ form_row(form.products) }}
+    <ul class="products" data-prototype="{{ form_widget(form.products.vars.prototype)|e }}" style="list-style-type: none">
+        {% for product in form.products %}
+            <li>{{ form_row(product.name) }}</li>
+            <li>{{ form_row(product.price) }}</li>
+        {% endfor %}
+    </ul>
 
 
     <input type="submit" value="Create"
